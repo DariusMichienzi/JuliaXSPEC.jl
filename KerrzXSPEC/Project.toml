@@ -1,0 +1,15 @@
+name = "KerrzXSPEC"
+uuid = "09dacc17-7e61-4808-a809-64292ea0336b"
+version = "0.1.0"
+
+[deps]
+JuliaXSPEC = "3c005aca-6691-4949-923b-87defb3ec510"
+JuliaXSPECModels = "5a88085a-9949-4f43-895d-693b85a89965"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[sources]
+JuliaXSPEC = {path = ".."}
+JuliaXSPECModels = {path = "../models"}
+
+[compat]
+julia = "1.13"

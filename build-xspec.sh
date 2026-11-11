@@ -3,6 +3,7 @@
 #
 #   ./build-xspec.sh           the reference models (after ./build-julia.sh)
 #   ./build-xspec.sh gradus    the lamppost library (after ./build-julia.sh gradus)
+#   ./build-xspec.sh kerrz     the kerrz corona library (after ./build-julia.sh kerrz)
 set -euo pipefail
 cd "$(dirname "$0")"
 root="$(pwd)"
@@ -19,16 +20,21 @@ case "$variant" in
         lib_dir="$root/build/gradus/lib"
         patch_prefix="../../.."
         ;;
+    kerrz)
+        xspec_dir="$root/build/kerrz/xspec"
+        lib_dir="$root/build/kerrz/lib"
+        patch_prefix="../../.."
+        ;;
     *)
-        echo "Usage: ./build-xspec.sh [gradus]" >&2
+        echo "Usage: ./build-xspec.sh [gradus|kerrz]" >&2
         exit 1
         ;;
 esac
 
 [[ -n "${HEADAS:-}" ]] || { echo "HEADAS is not set: source \$HEADAS/headas-init.sh first" >&2; exit 1; }
 [[ -f "$xspec_dir/model.dat" ]] || {
-    if [[ "$variant" == "gradus" ]]; then
-        echo "$xspec_dir/model.dat not found: run ./build-julia.sh gradus first" >&2
+    if [[ "$variant" != "core" ]]; then
+        echo "$xspec_dir/model.dat not found: run ./build-julia.sh $variant first" >&2
     else
         echo "$xspec_dir/model.dat not found: run ./build-julia.sh first" >&2
     fi
