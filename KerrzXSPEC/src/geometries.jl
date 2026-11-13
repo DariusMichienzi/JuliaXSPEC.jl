@@ -20,8 +20,8 @@
 
 # Spin exactly 0 makes kerrz 0.4.1 crash (table) or hang (emissivity), so the
 # grid starts at 0.1, the same lower limit as the Isambard table model.
-const SPIN_NODES = [0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.98, 0.998]
-const INC_NODES = collect(5.0:5.0:85.0)
+const SPIN_NODES = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98, 0.998]
+const INC_NODES = vcat(collect(5.0:1.0:30.0), collect(30.5:0.5:65.0), collect(65.2:0.2:85.0))
 
 spin_parameter() = Parameter("a", 0.9; min = first(SPIN_NODES), max = last(SPIN_NODES), delta = 0.01)
 inc_parameter() = Parameter("inc", 30.0; unit = "degrees", min = first(INC_NODES), max = last(INC_NODES), delta = 1.0)
@@ -102,7 +102,7 @@ end
 
 const DISC_H = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0]
 const DISC_RIN = [1.5, 2.0, 3.0, 5.0, 8.0]
-const DISC_DR = [1.0, 2.0, 5.0, 10.0, 20.0]
+const DISC_DR = [1.0, 2.0, 3.0, 4.0, 5.0, 7.0, 10.0, 14.0, 20.0]
 
 const DISC_PARAMETERS = [
     spin_parameter(),
@@ -126,7 +126,7 @@ end
 # Parameterised by the inner opening angle and the angular width, so that the
 # outer angle (inner + width) is always the larger.
 
-const UMB_R = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0]
+const UMB_R = [2.0, 3.0, 4.0, 5.0, 7.0, 10.0, 15.0, 20.0]
 const UMB_INNER = [0.0, 10.0, 20.0, 30.0, 45.0]
 const UMB_WIDTH = [5.0, 10.0, 20.0, 30.0, 45.0]
 
